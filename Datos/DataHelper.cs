@@ -1,9 +1,8 @@
-﻿using Microsoft.Azure.Amqp.Framing;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
+using Microsoft.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +14,7 @@ namespace Practica01.Datos
         private SqlConnection _conecction;
         private DataHelper()
         {
-            _conecction = new SqlConnection(@"");
+            _conecction = new SqlConnection(@"Data Source=DESKTOP-F7NA2CR;Initial Catalog=FacturacionDB;Integrated Security=True;Encrypt=False");
         }
         public static DataHelper GetInstance()
         {
