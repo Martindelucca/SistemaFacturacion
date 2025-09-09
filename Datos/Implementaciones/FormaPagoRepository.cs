@@ -14,11 +14,8 @@ namespace Practica01.Datos.Implementaciones
     public class FormaPagoRepository : IFormaPagoRepository
     {
 
-        List<FormaPago> formasPago = new List<FormaPago>();
-
         public List<FormaPago> GetAll()
         {
-            throw new NotImplementedException();
             List<FormaPago> formasPago = new List<FormaPago>();
 
             var dt = DataHelper.GetInstance().ExecuteSPQuery("SP_OBTENER_FORMAS_PAGO");
