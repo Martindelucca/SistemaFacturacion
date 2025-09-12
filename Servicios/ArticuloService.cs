@@ -1,6 +1,7 @@
 ﻿using Practica01.Datos.Implementaciones;
 using Practica01.Datos.Interfaces;
 using Practica01.Dominio;
+using Practica01.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Practica01.Servicios
 {
-    public class ArticuloService
+    public class ArticuloService : IArticuloService
     {
         private IArticuloRepository _repository;
 
@@ -35,10 +36,16 @@ namespace Practica01.Servicios
             }
         }
 
+        /// Constructor para inyección de dependencias (útil para testing)
+        public ArticuloService(IArticuloRepository repository)
+        {
+            _repository = repository;
+        }
+
         /// <summary>
         /// Obtiene un artículo por su ID
         /// </summary>
-        public Articulo ObtenerArticuloPorId(int idArticulo)
+        public Articulo? ObtenerArticuloPorId(int idArticulo)
         {
             try
             {

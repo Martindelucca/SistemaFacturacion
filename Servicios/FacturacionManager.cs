@@ -24,7 +24,7 @@ namespace Practica01.Servicios
         /// <summary>
         /// Proceso completo: Crear factura y agregar varios artículos de una vez
         /// </summary>
-        public Factura ProcesarVentaCompleta(string cliente, int idFormaPago, List<(int idArticulo, int cantidad, decimal? precio)> articulos)
+        public Factura? ProcesarVentaCompleta(string cliente, int idFormaPago, List<(int idArticulo, int cantidad, decimal? precio)> articulos)
         {
             try
             {

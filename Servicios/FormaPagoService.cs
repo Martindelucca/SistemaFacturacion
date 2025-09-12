@@ -1,6 +1,7 @@
 ﻿using Practica01.Datos.Implementaciones;
 using Practica01.Datos.Interfaces;
 using Practica01.Dominio;
+using Practica01.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 namespace Practica01.Servicios
 {
-    public class FormaPagoService
+    public class FormaPagoService : IFormaPagoService
     {
         private IFormaPagoRepository _repository;
 
@@ -18,9 +19,15 @@ namespace Practica01.Servicios
             _repository = new FormaPagoRepository();
         }
 
-        /// <summary>
+        /// Constructor para inyección de dependencias (útil para testing)
+
+        public FormaPagoService(IFormaPagoRepository repository)
+        {
+            _repository = repository;
+        }
+
         /// Obtiene todas las formas de pago disponibles
-        /// </summary>
+
         public List<FormaPago> ObtenerFormasPago()
         {
             try

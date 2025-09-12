@@ -1,6 +1,7 @@
 ﻿using Practica01.Datos.Implementaciones;
 using Practica01.Datos.Interfaces;
 using Practica01.Dominio;
+using Practica01.Servicios.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ using Microsoft.Data.SqlClient;
 
 namespace Practica01.Servicios
 {
-    public class FacturaService
+    public class FacturaService : IFacturaService
     {
         private IFacturaRepository _facturaRepository;
         private IArticuloRepository _articuloRepository;
@@ -23,9 +24,18 @@ namespace Practica01.Servicios
             _formaPagoRepository = new FormaPagoRepository();
         }
 
-        /// <summary>
+        public FacturaService(IFacturaRepository facturaRepository,
+                          IArticuloRepository articuloRepository,
+                          IFormaPagoRepository formaPagoRepository)
+        {
+            _facturaRepository = facturaRepository;
+            _articuloRepository = articuloRepository;
+            _formaPagoRepository = formaPagoRepository;
+        }
+
+
         /// Obtiene todas las facturas
-        /// </summary>
+
         public List<Factura> ObtenerFacturas()
         {
             try
@@ -42,7 +52,7 @@ namespace Practica01.Servicios
         /// <summary>
         /// Obtiene una factura completa con todos sus detalles
         /// </summary>
-        public Factura ObtenerFacturaCompleta(int nroFactura)
+        public Factura? ObtenerFacturaCompleta(int nroFactura)
         {
             try
             {
@@ -242,7 +252,7 @@ namespace Practica01.Servicios
         /// <summary>
         /// Obtiene estadísticas básicas de facturación
         /// </summary>
-        public object ObtenerEstadisticas()
+        public object? ObtenerEstadisticas()
         {
             try
             {
